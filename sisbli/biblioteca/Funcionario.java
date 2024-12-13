@@ -1,19 +1,21 @@
 package biblioteca;
 import divisao.Setor;
+import acesso.Funcionalidade;
+import java.util.List;
+import java.util.ArrayList;
 
 //aguardar usuário ficar pronto
-public class Funcionario {
+public class Funcionario extends acesso.Usuario{
     private String cpf;
     private int pis;
     private Setor lotacao;
 
-    public Funcionario(String nome, String senha, Setor lotacao ){
-      /*
-     super.nome = nome;
-     super.login = login;
-     super.senha = senha;
-     */
-     this.lotacao = lotacao;  
+    List<Funcionalidade> funcionalidades = new ArrayList<Funcionalidade>();
+    
+
+    public Funcionario(String nome, String senha, Setor lotacao){
+      super(nome, nome+"@email.com", senha, funcionalidades);
+      this.lotacao = lotacao;
     }
 
     public Funcionario(String nome, String senha, Setor lotacao, String cpf ){
