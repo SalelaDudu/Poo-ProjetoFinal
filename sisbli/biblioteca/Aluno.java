@@ -7,10 +7,14 @@ import java.util.ArrayList;
 
 public class Aluno {
 
- private int matricula;
- private List<Reserva> reservas = new ArrayList<>();
+ @SuppressWarnings("unused")
+
+private int matricula;
+ @SuppressWarnings("unused")
+private List<Reserva> reservas = new ArrayList<>();
  private List<LivroReservado> consumidores = new ArrayList<>();
- private List<Funcionalidade> funcionalidades = new ArrayList<Funcionalidade>();
+ @SuppressWarnings("unused")
+private List<Funcionalidade> funcionalidades = new ArrayList<Funcionalidade>();
 //esperar Usuário ficar pronto
  public Aluno(String nome, String login, String senha, int matricula ){
      /*

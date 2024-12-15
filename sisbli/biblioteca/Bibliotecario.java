@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Bibliotecario {
+    @SuppressWarnings("unused")
     private List<Emprestimo> emprestimos = new ArrayList<Emprestimo>();
 
     public Bibliotecario(String nome, String senha, Setor lotacao, String cpf ){

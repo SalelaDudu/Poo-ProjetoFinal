@@ -2,6 +2,7 @@ package biblioteca;
 import divisao.Setor;
 //aguardar usuaruio ficar pronto
 public class Professor {
+    @SuppressWarnings("unused")
     private Reserva reserva;
 
     public Professor(String nome, String login, String senha, Setor lotacao, String cpf ){
