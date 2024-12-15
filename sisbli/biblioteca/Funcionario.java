@@ -15,22 +15,22 @@ public class Funcionario extends acesso.Usuario{
     
         
     
-        public Funcionario(String nome, String senha, Setor lotacao){
-          super(nome, nome+"@email.com", senha, funcionalidades);
+        public Funcionario(String nome,String login, String senha, Setor lotacao){
+          super(nome, login, senha, funcionalidades);
       this.lotacao = lotacao;
     }
 
-    public Funcionario(String nome, String senha, Setor lotacao, String cpf ){
+    public Funcionario(String nome,String login, String senha, Setor lotacao, String cpf ){
     
-      super(nome, nome+"@email.com", senha, funcionalidades);
+      super(nome, login, senha, funcionalidades);
      
      this.lotacao = lotacao;
      this.cpf = cpf;  
     }
 
-  public Funcionario(String nome, String senha, Setor lotacao, String cpf, int pis ){
+  public Funcionario(String nome,String login, String senha, Setor lotacao, String cpf, int pis ){
     
-    super(nome, nome+"@email.com", senha, funcionalidades);
+    super(nome, login, senha, funcionalidades);
       
      this.lotacao = lotacao;
      this.cpf = cpf;
