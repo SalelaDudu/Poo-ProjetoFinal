@@ -1,37 +1,43 @@
 package biblioteca;
+
+import acesso.*;
 import java.util.List;
-
-import acesso.Funcionalidade;
-
 import java.util.ArrayList;
 
-public class Aluno {
+@SuppressWarnings("unused")
 
- @SuppressWarnings("unused")
-
+public class Aluno extends Usuario implements ReservouLivro{
 private int matricula;
- @SuppressWarnings("unused")
 private List<Reserva> reservas = new ArrayList<>();
- private List<LivroReservado> consumidores = new ArrayList<>();
- @SuppressWarnings("unused")
+private List<LivroReservado> consumidores = new ArrayList<>();
 private List<Funcionalidade> funcionalidades = new ArrayList<Funcionalidade>();
-//esperar Usuário ficar pronto
- public Aluno(String nome, String login, String senha, int matricula ){
-     /*
-    super.nome = nome;
-    super.login = login;
-    super.senha = senha;
-    */
-    this.matricula = matricula;
+
+public Aluno(String nome, String login, String senha, int matricula, List<Funcionalidade> funcionalidades){
+   super(nome,login,senha,funcionalidades);
+   this.matricula = matricula;
  }
 
- public List<LivroReservado> getConsumidores(){
-    return consumidores;
- }   
+public List<LivroReservado> getConsumidores(){
+   return consumidores;
+}   
 
- public void cadastrarReserva(List<String> titulosLivros, String data){
-   //esperar implementar a reserva.
- }
-    
- 
+public void cadastrarReserva(List<String> titulosLivros, String data){
+   Reserva reserva = new Reserva(data,titulosLivros);
+}
+
+@Override
+public void adicionar(LivroReservado livroReservado) {
+   // implementar
+}
+
+@Override
+public void remover(LivroReservado livroReservado) {
+// implementar
+}
+
+@Override
+public void notificar(Reserva reserva) {
+// implementar
+
+   }
 }

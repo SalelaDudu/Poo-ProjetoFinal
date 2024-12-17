@@ -1,5 +1,13 @@
 package acesso;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+import biblioteca.Bibliotecario;
+import biblioteca.Funcionario;
+import biblioteca.Livro;
+import biblioteca.Professor;
+import divisao.Setor;
+
 import java.util.ArrayList;
 
 public class Usuario {
@@ -13,7 +21,7 @@ public class Usuario {
         this.nome = nome;
         this.login = login;
         this.senha = senha;
-        this.funcionalidades = funcionalidades;
+        this.funcionalidades = funcionalidades;        
     }
 
     public String getNome() {
@@ -30,8 +38,19 @@ public class Usuario {
     }
 // Implementar tbm
     public static <T> List<T> listar(Class<T> instanciaClasse){
-
-        return new ArrayList<>();
+        List<T> lista = new ArrayList<>();
+        try{
+            if(instanciaClasse == Livro.class){
+                System.out.println("É um livro");
+            }
+            else if(instanciaClasse == Funcionario.class || instanciaClasse == Professor.class || instanciaClasse == Bibliotecario.class){
+                System.out.println("É um funcionário do tipo: " + instanciaClasse.getName());
+            }
+            return null;
+        }
+        catch(Exception e){
+            return null;
+        }        
     }
 
     public static Usuario obter(String login, String senha){

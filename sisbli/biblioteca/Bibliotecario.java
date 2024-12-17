@@ -1,14 +1,16 @@
 package biblioteca;
 import divisao.Setor;
 import java.util.List;
+
+import acesso.Funcionalidade;
+
 import java.util.ArrayList;
 
-public class Bibliotecario extends Funcionario implements LivroReservado{
-    @SuppressWarnings("unused")
+public class Bibliotecario extends Funcionario implements LivroReservado{    
     private List<Emprestimo> emprestimos;
 
-    public Bibliotecario(String nome,String login, String senha, Setor lotacao, String cpf ){
-        super(nome,login,senha,lotacao,cpf);
+    public Bibliotecario(String nome,String login, String senha, Setor lotacao, String cpf, List<Funcionalidade> funcionalidades){
+        super(nome,login,senha,lotacao,cpf,funcionalidades);
         this.emprestimos = new ArrayList<Emprestimo>();
     }
 

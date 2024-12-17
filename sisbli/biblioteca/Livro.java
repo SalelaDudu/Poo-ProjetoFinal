@@ -40,7 +40,7 @@ public class Livro {
             for (Livro livro : biblioteca.keySet()) {
                     if(livro.getTitulo() == titulo){
                         return livro;
-                     }
+                    }
                 }
             return null;
         }
@@ -51,15 +51,16 @@ public class Livro {
     }
     
     public static Exemplar obterExemplar(Livro livro){
-        List<Exemplar> exemplares = biblioteca.get(livro);
+        List<Exemplar> exemplares = new ArrayList<Exemplar>();
+        exemplares = biblioteca.get(livro);
         
         if (exemplares.isEmpty()){
             System.out.println("Não há mais exemplares deste livro");
             return null;
         }
         else{
-            exemplares.removeLast();
-            return exemplares.getFirst();
+            exemplares.remove(exemplares.size() - 1);
+            return exemplares.get(0);
         }
     }
 
