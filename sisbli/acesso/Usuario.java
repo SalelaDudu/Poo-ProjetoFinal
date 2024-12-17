@@ -20,9 +20,9 @@ public class Usuario {
 
     static{
         usuarios = new ArrayList<Usuario>();
-        usuarios.add(new Professor("João Souza","joao.souza@professor.com","123456",new Setor("Docente"), "123.456.768-91", null));
-        usuarios.add(new Aluno("José Pereira","jose.pereira@aluno.com","123456",202420012,null));
-        usuarios.add(new Bibliotecario("Marcelo Barbosa","marcelo.barbosa@biblioteca.com","123456",new Setor("Biblioteca"),"123.456.798-55", null));
+        usuarios.add(new Professor("João Souza","joao.login","123456",new Setor("Docente"), "123.456.768-91", null));
+        usuarios.add(new Aluno("José Pereira","jose.login","123456",202420012,null));
+        usuarios.add(new Bibliotecario("Marcelo Barbosa","marcelo.login","123456",new Setor("Biblioteca"),"123.456.798-55", null));
     }
 
     public Usuario(String nome, String login, String senha, List<Funcionalidade> funcionalidades){

@@ -19,8 +19,7 @@ public class Principal {
         funcionalidades.add(CAD_CONS);
         funcionalidades.add(CAD_RESE);
         funcionalidades.add(REM_CONS);
-
-        // Recebe o login do usuario
+    
         try{
 
             String usuario_login = JOptionPane.showInputDialog(null,"Informe seu login:",titulo_programa,JOptionPane.PLAIN_MESSAGE);
@@ -28,17 +27,16 @@ public class Principal {
             
             if(Usuario.obter(usuario_login, usuario_senha) != null ){
                 Object[] options = { "Cadastrar consumidor", "Remover Consumidor", "Cadastrar Reserva", "Sair" };
+
                 JOptionPane.showOptionDialog(null, "Selecione uma opção:", titulo_programa,
-                JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-            null, options, options[0]);
+                JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+            null, options, options[3]);
             }else{
                 JOptionPane.showMessageDialog(null, "Erro ao autenticar usuário.\nEncerrando operação...", titulo_programa, JOptionPane.ERROR_MESSAGE);
             }
         }catch(Exception e){
             System.out.println(e);
         }
-
-
 
         // Encerra o programa
         System.exit(0);
