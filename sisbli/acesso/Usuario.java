@@ -1,6 +1,5 @@
 package acesso;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import biblioteca.Aluno;
 import biblioteca.Bibliotecario;
@@ -10,6 +9,8 @@ import biblioteca.Professor;
 import divisao.Setor;
 
 import java.util.ArrayList;
+
+@SuppressWarnings("unchecked")
 
 public class Usuario {
     private String nome;
@@ -44,15 +45,16 @@ public class Usuario {
 
         return "";
     }
-// Implementar tbm
+
     public static <T> List<T> listar(Class<T> instanciaClasse){
+        @SuppressWarnings("unused")
         List<T> lista = new ArrayList<>();
         try{
             if(instanciaClasse == Livro.class){
-                System.out.println("É um livro");
+                return (List<T>) Livro.Listar();
             }
-            else if(instanciaClasse == Funcionario.class || instanciaClasse == Professor.class || instanciaClasse == Bibliotecario.class){
-                System.out.println("É um funcionário do tipo: " + instanciaClasse.getName());
+            else if(instanciaClasse == Funcionario.class || instanciaClasse == Professor.class || instanciaClasse == Bibliotecario.class || instanciaClasse == Usuario.class){
+                return (List<T>) usuarios;
             }
             return null;
         }

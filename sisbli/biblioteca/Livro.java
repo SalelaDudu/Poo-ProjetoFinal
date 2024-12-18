@@ -10,17 +10,18 @@ public class Livro {
     private String editora;
     private static Map<Livro,List<Exemplar>> biblioteca;
 
+    static{
+        biblioteca = criarBiblioteca();
+    }
 
     public Livro(String titulo){
-        this.titulo = titulo;
-        biblioteca = criarBiblioteca();
+        this.titulo = titulo;        
     }
 
     public Livro(String titulo, String autor, String editora){
         this.titulo = titulo;
         this.autor = autor;
-        this.editora = editora;
-        biblioteca = criarBiblioteca();
+        this.editora = editora;        
     }
 
     public String getTitulo() {
