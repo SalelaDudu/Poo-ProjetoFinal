@@ -66,12 +66,9 @@ public static void main(String[] args){
                                             else{
                                                 selecao = 1;
                                             }
-
-                                            System.out.println(consumidores);
                                         }
                                     }
                                     else{
-                                        System.out.println("Tchau");
                                     }
                                 }
                                 while(selecao != 1);

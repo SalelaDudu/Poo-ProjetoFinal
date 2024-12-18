@@ -13,6 +13,9 @@ if %ERRORLEVEL% neq 0 (
 echo Executando...
 java Principal
 
-del /q *.class
+echo Limpando arquivos .class...
+for /r %%f in (*.class) do (
+    del /q "%%f"
+)
 
 exit
