@@ -27,17 +27,19 @@ public void cadastrarReserva(List<String> titulosLivros, String data){
 
 @Override
 public void adicionar(LivroReservado livroReservado) {
-   // implementar
+   consumidores.add(livroReservado);
 }
 
 @Override
 public void remover(LivroReservado livroReservado) {
-// implementar
+   consumidores.remove(livroReservado);
 }
 
 @Override
 public void notificar(Reserva reserva) {
-// implementar
+   for (LivroReservado consumidor : consumidores) {
+      consumidor.ocorreu(reserva);
+  }
 
    }
 }

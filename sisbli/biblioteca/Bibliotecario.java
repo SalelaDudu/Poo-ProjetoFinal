@@ -15,25 +15,31 @@ public class Bibliotecario extends Funcionario implements LivroReservado{
     }
 
     public void cadastrarEmprestimo(Reserva reserva){
-            emprestimos.add(new Emprestimo(reserva));
+        emprestimos.add(new Emprestimo(reserva));
+        System.out.println("Empréstimo cadastrado para o livro: " + reserva./* */);
     }
 
     @Override
-    // implementar
+  
     public void ocorreu(Reserva reserva) {
-
+        System.out.println("Bibliotecário notificado sobre a reserva do livro: " + reserva./* */);
     }
 
     @Override
-    // implementar
+   
     public String informarReserva() {
-        return "";
+        if (emprestimos.isEmpty()) {
+            return "Nenhuma reserva ou empréstimo pendente.";
+        }
+        
+        StringBuilder sb = new StringBuilder();
+        sb.append("Emprestimos realizados:\n");
+        for (Emprestimo emprestimo : emprestimos) {
+            sb.append("Livro: ").append(emprestimo./* */)
+              .append(" - Data de Retirada: ").append(emprestimo.getDataRetirada()).append("\n");
+        }
+        return sb.toString();
     }
 
-//esperar Reserva ficar pronto
-/*
-public void cadastrarEmprestimo(){
 
-}
-*/
 }

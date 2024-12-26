@@ -3,7 +3,6 @@ import java.util.List;
 
 import acesso.Funcionalidade;
 import divisao.Setor;
-//aguardar usuaruio ficar pronto
 @SuppressWarnings("unused")
 public class Professor extends Funcionario implements LivroReservado{
     private Reserva reserva;
@@ -14,16 +13,22 @@ public class Professor extends Funcionario implements LivroReservado{
     }
 
     @Override
-    // Fazer isso
+    
     public void ocorreu(Reserva reserva) {
-
+        this.reserva = reserva;
+        System.out.println("Professor informado sobre a reserva do livro: " + /*não to conseguindo pegar o titulo */);
     }
 
     @Override
-    // Implementar isso
+
     public String informarReserva() {
-        
-        return "";
+        if (reserva != null) {
+            return "Reserva do livro: " + /*to com problemas*/ + " feita por: " + /*nessa parte */;
+        } else {
+            return "Nenhuma reserva no momento.";
+        }
+    }
+       
     }
 
 }
