@@ -1,4 +1,5 @@
 package biblioteca;
+import java.util.ArrayList;
 import java.util.List;
 
 import acesso.Funcionalidade;
@@ -12,23 +13,30 @@ public class Professor extends Funcionario implements LivroReservado{
 
     }
 
-    @Override
-    
+    @Override    
     public void ocorreu(Reserva reserva) {
         this.reserva = reserva;
-        System.out.println("Professor informado sobre a reserva do livro: " + /*não to conseguindo pegar o titulo */);
+        System.out.println("Reserva notificada ao professor: "+ getNome());
     }
 
     @Override
-
     public String informarReserva() {
-        if (reserva != null) {
-            return "Reserva do livro: " + /*to com problemas*/ + " feita por: " + /*nessa parte */;
-        } else {
-            return "Nenhuma reserva no momento.";
+        try{
+            if (reserva != null) {
+                List<Livro> livros = new ArrayList<Livro>();
+                livros = reserva.getLivros();
+                String retorno = "### "+ getNome() + "("+getClass()+") informa:" + " ###";
+                for (Livro livro : livros) {
+                    retorno += "\nData reserva: " + reserva.getData();
+                    retorno += "\nLivro: " + livro.getTitulo();
+                }
+                return retorno;
+            } else {
+                return "Nenhuma reserva no momento.";
+            }            
+        }catch(Exception e){
+            System.out.println(e);
+            return null;
         }
     }
-       
-    }
-
 }

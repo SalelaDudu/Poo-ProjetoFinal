@@ -129,8 +129,7 @@ public class Principal {
                             }
                             break;
 
-                        case 2:
-                       
+                        case 2:                       
                             break;
                         case 3:
                             controle = false;
@@ -145,9 +144,7 @@ public class Principal {
         } catch (Exception e) {
             System.out.println(e);
         }
-
-        // Encerra o programa
-        System.exit(0);
+System.exit(0);
     }
 
 }

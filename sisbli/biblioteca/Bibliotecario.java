@@ -16,30 +16,36 @@ public class Bibliotecario extends Funcionario implements LivroReservado{
 
     public void cadastrarEmprestimo(Reserva reserva){
         emprestimos.add(new Emprestimo(reserva));
-        System.out.println("Empréstimo cadastrado para o livro: " + reserva./* */);
     }
 
     @Override
-  
     public void ocorreu(Reserva reserva) {
-        System.out.println("Bibliotecário notificado sobre a reserva do livro: " + reserva./* */);
+        System.out.println("Bibliotecário notificado sobre a reserva dos livros:");
+        for (Livro livro : reserva.getLivros()) {
+            System.out.println(livro.getTitulo());
+        }
     }
 
-    @Override
-   
+    @Override   
     public String informarReserva() {
         if (emprestimos.isEmpty()) {
             return "Nenhuma reserva ou empréstimo pendente.";
         }
-        
-        StringBuilder sb = new StringBuilder();
-        sb.append("Emprestimos realizados:\n");
+        String retorno = "";
         for (Emprestimo emprestimo : emprestimos) {
-            sb.append("Livro: ").append(emprestimo./* */)
-              .append(" - Data de Retirada: ").append(emprestimo.getDataRetirada()).append("\n");
+            retorno = "";
+            retorno += "###"+ getNome() + "("+ getClass() +") informa: ###\n";
+            retorno += "Data Retirada: "+ emprestimo.getDataRetirada();
+            retorno += "Data Devolução: " + emprestimo.getDataDevolucao();
+            
+            for (Exemplar exemplar : emprestimo.getExemplares()) {
+                retorno += "Livro: " + exemplar.getLivro().getTitulo();
+                retorno += "Autor: " + exemplar.getLivro().getAutor();
+                retorno += "Editora: " + exemplar.getLivro().getEditora();
+                retorno += "Exemplar nº: " + exemplar.getCodigo();
+                retorno += "Situação: " + exemplar.getSituacao();
+            }
         }
-        return sb.toString();
+        return null;
     }
-
-
 }

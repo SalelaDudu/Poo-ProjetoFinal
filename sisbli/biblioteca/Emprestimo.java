@@ -1,4 +1,5 @@
 package biblioteca;
+import infraestrutura.*;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -9,6 +10,8 @@ public class Emprestimo {
     
     public Emprestimo(Reserva reserva){
         this.exemplares = carregarExemplares(reserva.getLivros());
+        dataRetirada = reserva.getData();
+        dataDevolucao = Util.somarDiasData(dataDevolucao, 7);
     }
 
     public String getDataRetirada() {
