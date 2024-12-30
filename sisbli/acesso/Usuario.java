@@ -40,7 +40,7 @@ public class Usuario {
     public List<Funcionalidade> getFuncionalidades() {
         return funcionalidades;
     }
-// Implementar esse filho aqui
+
     public String sair(){
 
         return "";

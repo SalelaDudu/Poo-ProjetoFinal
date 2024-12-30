@@ -10,7 +10,6 @@ public class Exemplar {
 
     public Exemplar(Livro livro){
         this.livro = livro;
-        // Acho que essa dataAquiscao deveria ser em outro lugar
         this.dataAquisicao = Util.obterDataAtual();
     }
 

@@ -129,8 +129,41 @@ public class Principal {
                             }
                             break;
 
-                        case 2:                       
-                            break;
+                        case 2:
+                    
+                        String titulo = JOptionPane.showInputDialog(null, "Informe o título do livro que deseja reservar:",
+                                    titulo_programa, JOptionPane.PLAIN_MESSAGE);
+
+                            if (titulo == null || titulo.trim().isEmpty()) {
+                                JOptionPane.showMessageDialog(null, "Título inválido!", titulo_programa,
+                                        JOptionPane.WARNING_MESSAGE);
+                            } else {
+                               
+                                Livro livro = Livro.obterLivro(titulo);
+
+                                if (titulo.equals( "Uma breve História do tempo")) {
+                                    Livro.obterExemplar(livro);
+                                    JOptionPane.showMessageDialog(null, "Livro reservado!", titulo_programa,
+                                    JOptionPane.WARNING_MESSAGE);
+                                    
+                                } 
+                                if (titulo.equals("As crônicas de gelo e fogo: A guerra dos tronos")) {
+                                    Livro.obterExemplar(livro);
+                                    JOptionPane.showMessageDialog(null, "Livro reservado!", titulo_programa,
+                                    JOptionPane.WARNING_MESSAGE);
+                                    
+                                }   else {
+                                        
+                                    JOptionPane.showMessageDialog(null, "Livro não encontrado!", titulo_programa,
+                                    JOptionPane.ERROR_MESSAGE);
+                                    }
+                                    {
+                                        continue;
+                                    }
+                                
+                            }
+                            
+                        break;
                         case 3:
                             controle = false;
                         default:
