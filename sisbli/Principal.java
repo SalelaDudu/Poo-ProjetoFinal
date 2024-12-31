@@ -138,34 +138,34 @@ public class Principal {
                                 JOptionPane.showMessageDialog(null, "Título inválido!", titulo_programa,
                                         JOptionPane.WARNING_MESSAGE);
                             } else {
-                               
                                 Livro livro = Livro.obterLivro(titulo);
-
-                                if (titulo.equals( "Uma breve História do tempo")) {
-                                    Livro.obterExemplar(livro);
-                                    JOptionPane.showMessageDialog(null, "Livro reservado!", titulo_programa,
-                                    JOptionPane.WARNING_MESSAGE);
-                                    
-                                } 
-                                if (titulo.equals("As crônicas de gelo e fogo: A guerra dos tronos")) {
-                                    Livro.obterExemplar(livro);
-                                    JOptionPane.showMessageDialog(null, "Livro reservado!", titulo_programa,
-                                    JOptionPane.WARNING_MESSAGE);
-                                    
-                                }   else {
-                                        
-                                    JOptionPane.showMessageDialog(null, "Livro não encontrado!", titulo_programa,
-                                    JOptionPane.ERROR_MESSAGE);
-                                    }
-                                    {
-                                        continue;
-                                    }
-                                
+                                Exemplar exemplar = Livro.obterExemplar(livro);
+                        
+                                if (exemplar != null) {
+                                   
+                                    Usuario usuarioLogado = Usuario.obter(usuario_login, usuario_senha);
+                                    Reserva reserva = new Reserva(Util.obterDataAtual(), List.of(livro));
+                                    usuarioLogado.cadastrarReserva(List.of(titulo), Util.obterDataAtual()); 
+                        
+                                    JOptionPane.showMessageDialog(null, "Livro reservado com sucesso!", titulo_programa,
+                                                            JOptionPane.INFORMATION_MESSAGE);
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Não há exemplares disponíveis para este livro.", titulo_programa,
+                                                            JOptionPane.ERROR_MESSAGE);
+                                }
                             }
                             
                         break;
                         case 3:
                             controle = false;
+                            for (Usuario usuario : Usuario.listar(Usuario.class)) {
+                                if (usuario instanceof LivroReservado) {
+                                    String informacoes = ((LivroReservado) usuario).informarReserva();
+                                    if (informacoes != null) {
+                                        JOptionPane.showMessageDialog(null, informacoes, titulo_programa, JOptionPane.INFORMATION_MESSAGE);
+                                    }
+                                }
+                            }
                         default:
                             break;
                     }

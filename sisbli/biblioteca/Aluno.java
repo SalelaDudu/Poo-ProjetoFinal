@@ -2,11 +2,12 @@ package biblioteca;
 
 import acesso.*;
 import java.util.List;
+import java.util.Observer;
 import java.util.ArrayList;
 
 @SuppressWarnings("unused")
 
-public class Aluno extends Usuario implements ReservouLivro{
+public class Aluno extends Usuario implements  ReservouLivro{
    private int matricula;
    private List<Reserva> reservas = new ArrayList<>();
    private List<LivroReservado> consumidores = new ArrayList<>();
