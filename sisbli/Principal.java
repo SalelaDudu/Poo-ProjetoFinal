@@ -153,7 +153,10 @@ public class Principal {
                                                 }
                                             }
                                         }
-                                }                                
+                                } 
+                                for (LivroReservado consumidor : consumidorDeEventos) {
+                                        aluno.adicionar(consumidor);
+                                }
                             }
 
                             int selecao2 = 10;
@@ -178,12 +181,12 @@ public class Principal {
                             while(selecao2 != 1);
                             
                             for (String titulo : livros) {
-                                if (titulo == null || titulo == "") {
+                                if (titulo == null || titulo == "") {                                    
                                     JOptionPane.showMessageDialog(null, "O título:"+ titulo +" é inválido!", titulo_programa,
                                     JOptionPane.WARNING_MESSAGE);
+                                    livros.remove(titulo);
                                 }
                             }
-                            
                             aluno.cadastrarReserva(livros, Util.obterDataAtual());
                             break;
                         case 3:
@@ -206,7 +209,7 @@ public class Principal {
                         titulo_programa, JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("Erro no main: "+e);
         }
 System.exit(0);
     }

@@ -35,7 +35,7 @@ public class Professor extends Funcionario implements LivroReservado{
                 return "Nenhuma reserva no momento.";
             }            
         }catch(Exception e){
-            System.out.println(e);
+            System.out.println("Erro ao tentar informar reserva no professor: "+e);
             return null;
         }
     }

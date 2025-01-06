@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Reserva {
     private String data;
-    private List<Livro> livros;
+    private List<Livro> livros = new ArrayList<Livro>();
 
     public Reserva(String data, List<String> titulosLivros){
         this.data = data;
@@ -22,8 +22,8 @@ public class Reserva {
     private List<Livro> carregarLivros(List<String> titulosLivros){
         List<Livro> resultado = new ArrayList<Livro>();
 
-        for (String titulo : titulosLivros) {
-            resultado.add(Livro.obterLivro(titulo));
+        for (String titulo : titulosLivros) {        
+            resultado.add(Livro.obterLivro(titulo.toString()));            
         }
 
         return resultado;

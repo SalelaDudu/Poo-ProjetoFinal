@@ -20,9 +20,10 @@ public class Bibliotecario extends Funcionario implements LivroReservado{
 
     @Override
     public void ocorreu(Reserva reserva) {
+        cadastrarEmprestimo(reserva);
         System.out.println("Bibliotecário notificado sobre a reserva dos livros:");
         for (Livro livro : reserva.getLivros()) {
-            System.out.println(livro.getTitulo());
+                System.out.println(livro.getTitulo());
         }
     }
 

@@ -3,8 +3,6 @@ import java.util.List;
 
 import biblioteca.Aluno;
 import biblioteca.Bibliotecario;
-import biblioteca.Funcionario;
-import biblioteca.Livro;
 import biblioteca.Professor;
 import divisao.Setor;
 
@@ -65,7 +63,7 @@ public class Usuario {
             }
         }
         catch(Exception e){
-            System.out.println(e);
+            System.out.println("Erro ao obter usuáio: "+e);
             return null;
         }
         return null;

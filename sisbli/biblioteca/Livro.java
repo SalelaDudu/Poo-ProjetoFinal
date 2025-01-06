@@ -46,7 +46,7 @@ public class Livro {
             return null;
         }
         catch(Exception e){
-            System.out.println(e);
+            System.out.println("Erro ao obter livro: "+e);
             return null;
         }
     }
@@ -88,7 +88,7 @@ public class Livro {
     private static void criarListaExemplares(Map<Livro,List<Exemplar>> biblioteca){        
         int numeroExemplares = 5;
 
-        Livro livro1 = new Livro("Uma breve História do tempo","Stephen Hawking","Intrínseca");
+        Livro livro1 = new Livro("Uma breve Historia do tempo","Stephen Hawking","Intrínseca");
         Livro livro2 = new Livro("As crônicas de gelo e fogo: A guerra dos tronos","George R. R. Martin","LeYa");
         
         List<Exemplar> exemplaresLivro1 = new ArrayList<Exemplar>();        
