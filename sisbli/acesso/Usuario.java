@@ -63,7 +63,7 @@ public class Usuario {
             }
         }
         catch(Exception e){
-            System.out.println("Erro ao obter usuáio: "+e);
+            System.out.println("Erro ao obter usuáio: " + e);
             return null;
         }
         return null;

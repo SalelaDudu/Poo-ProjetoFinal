@@ -6,12 +6,27 @@ import java.util.ArrayList;
 public class Emprestimo {
     private String dataRetirada;    
     private String dataDevolucao;
-    private List<Exemplar> exemplares;
+    private List<Exemplar> exemplares = new ArrayList<Exemplar>();
     
     public Emprestimo(Reserva reserva){
-        this.exemplares = carregarExemplares(reserva.getLivros());
-        dataRetirada = reserva.getData();
-        dataDevolucao = Util.somarDiasData(dataDevolucao, 7);
+        try{
+            if(reserva != null){
+                try{
+                    exemplares = carregarExemplares(reserva.getLivros());
+                    if(exemplares.isEmpty() || exemplares == null){
+                        System.out.println("erro nos exemplares");
+                    }
+                    dataRetirada = reserva.getData();
+                    dataDevolucao = Util.somarDiasData(dataRetirada, 7);
+                }
+                catch(Exception e){
+                    System.out.println("o erro tava aqui kkkkkkk "+ e);
+                }
+            }
+
+        }catch(Exception e){
+            System.out.println("erro no emprestimo " + e);
+        }
     }
 
     public String getDataRetirada() {

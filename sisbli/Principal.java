@@ -23,6 +23,8 @@ public class Principal {
         funcionalidades.add(REM_CONS);
         Aluno aluno = null;
         List<LivroReservado> consumidorDeEventos = new ArrayList<LivroReservado>();
+        List<String> livrosAlugados = new ArrayList<String>();
+        String[] reservas = null;
         try {            
             for (Usuario usuario : Usuario.listar(Usuario.class)) {
                 if(usuario instanceof Aluno){
@@ -161,7 +163,7 @@ public class Principal {
                             }
 
                             int selecao2 = 10;
-                            List<String> livros = new ArrayList<String>();
+                            
                             JOptionPane.showMessageDialog(null,"Listando nossos livros...",titulo_programa,JOptionPane.PLAIN_MESSAGE);
                         
                             for (String titulo : Livro.Listar()) {
@@ -191,10 +193,10 @@ public class Principal {
                                         JOptionPane.showMessageDialog(null, "Seleção inválida!", titulo_programa,
                                         JOptionPane.WARNING_MESSAGE);
                                     } else {
-                                        livros.add(combobox.getSelectedItem().toString());                                        
+                                        livrosAlugados.add(combobox.getSelectedItem().toString());                                        
                                         
-                                        aluno.cadastrarReserva(livros, Util.obterDataAtual());
-                                        
+                                        aluno.cadastrarReserva(livrosAlugados, Util.obterDataAtual());
+
                                         if (JOptionPane.showConfirmDialog(null, "Deseja realizar outro cadastro?",
                                             titulo_programa, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {                                            
                                             
@@ -208,11 +210,27 @@ public class Principal {
                             break;
                         case 3:
                             controle = false;
-                            for (Usuario usuario : Usuario.listar(Usuario.class)) {
+                            String informacoes = null;
+                            for (Usuario usuario : Usuario.listar(Usuario.class)){
                                 if (usuario instanceof LivroReservado) {
-                                    String informacoes = ((LivroReservado) usuario).informarReserva();
-                                    if (informacoes != null) {
+                                    if(usuario instanceof Bibliotecario){                                        
+                                        informacoes = ((LivroReservado) usuario).informarReserva();
+                                        reservas = informacoes.split("\\$\\$\\$");
+                                    }
+                                    else{
+                                        informacoes = ((LivroReservado) usuario).informarReserva();
+                                    }
+                                    if ((informacoes != null) && (reservas == null)) {
                                         JOptionPane.showMessageDialog(null, informacoes, titulo_programa, JOptionPane.INFORMATION_MESSAGE);
+                                    }
+                                    else if((informacoes != null) && (reservas != null)){
+                                        System.out.println(reservas.length);
+                                        for (String informacao : reservas) {                                            
+                                            JOptionPane.showMessageDialog(null, informacao, titulo_programa, JOptionPane.INFORMATION_MESSAGE);
+                                        }
+                                    }
+                                    else{
+
                                     }
                                 }
                             }

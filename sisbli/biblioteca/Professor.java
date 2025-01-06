@@ -4,6 +4,7 @@ import java.util.List;
 
 import acesso.Funcionalidade;
 import divisao.Setor;
+
 @SuppressWarnings("unused")
 public class Professor extends Funcionario implements LivroReservado{
     private Reserva reserva;
@@ -25,10 +26,10 @@ public class Professor extends Funcionario implements LivroReservado{
             if (reserva != null) {
                 List<Livro> livros = new ArrayList<Livro>();
                 livros = reserva.getLivros();
-                String retorno = "### "+ getNome() + "("+getClass()+") informa:" + " ###";
+                String retorno = "### "+ getNome() + "(Professor) informa:" + " ###";
                 for (Livro livro : livros) {
                     retorno += "\nData reserva: " + reserva.getData();
-                    retorno += "\nLivro: " + livro.getTitulo();
+                    retorno += "\nLivro: " + livro.getTitulo() + "\n";
                 }
                 return retorno;
             } else {

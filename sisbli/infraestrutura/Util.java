@@ -3,6 +3,7 @@ package infraestrutura;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+@SuppressWarnings("unused")
 public class Util {
     private Util(){}
 
@@ -17,6 +18,7 @@ public class Util {
 		LocalDate dataFinal = data.plusDays(dias);
 		return (dataFinal.format(formatadorData));
     }
+
 
     private static LocalDate converterStringData(String dataString, String formato){
 		DateTimeFormatter formatadorData = DateTimeFormatter.ofPattern(formato);

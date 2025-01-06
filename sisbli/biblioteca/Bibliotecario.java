@@ -7,33 +7,25 @@ import acesso.Funcionalidade;
 import java.util.ArrayList;
 
 public class Bibliotecario extends Funcionario implements LivroReservado{    
-    private List<Emprestimo> emprestimos;
+    private List<Emprestimo> emprestimos = new ArrayList<Emprestimo>();
 
     public Bibliotecario(String nome,String login, String senha, Setor lotacao, String cpf, List<Funcionalidade> funcionalidades){
         super(nome,login,senha,lotacao,cpf,funcionalidades);
-        this.emprestimos = new ArrayList<Emprestimo>();
     }
 
     public void cadastrarEmprestimo(Reserva reserva){
-        emprestimos.add(new Emprestimo(reserva));
-    }
+            emprestimos.add(new Emprestimo(reserva));
+        }
 
     @Override
     public void ocorreu(Reserva reserva) {
+
             cadastrarEmprestimo(reserva);
-            System.out.println("Bibliotecário notificado sobre a reserva dos livros:");
+
+            System.out.println("Bibliotecário " + getNome() + " notificado sobre a reserva dos livros:");
             for (Livro livro : reserva.getLivros()) {
-                    
-                if(livro == null){
-                        System.out.println("O LIVRO É NULO, NÃO DEVERIA MAS É NULO");
-                    }
-                System.out.println(livro);
-                if(livro.getTitulo() == null){
-                        System.out.println("CHOREI HORRORES");
-                    }
+                    System.out.println(livro.getTitulo());
             }
-
-
     }
 
     @Override   
@@ -41,32 +33,22 @@ public class Bibliotecario extends Funcionario implements LivroReservado{
         if (emprestimos.isEmpty()) {
             return "Nenhuma reserva ou empréstimo pendente.";
         }
-        try{
+        StringBuilder retorno = new StringBuilder();
 
-            Emprestimo emprestimo = emprestimos.get(0);
-            List<Exemplar> exemplar = emprestimo.getExemplares();
-            Exemplar exemplarB = exemplar.getFirst();
-            String retorno = "";
-
-            try{
-                retorno += "###"+ getNome() + "("+ getClass() +") informa: ###\n";
-                retorno += "Data Retirada: "+ emprestimo.getDataRetirada();
-                retorno += "\nData Devolução: " + emprestimo.getDataDevolucao();
+        for (Emprestimo emprestimo : emprestimos) {
+            retorno.append("###").append(getNome()).append("(Bibliotecario) informa: ###\n");
+            retorno.append("Data Retirada: ").append(emprestimo.getDataRetirada());
+            retorno.append("\nData Devolução: ").append(emprestimo.getDataDevolucao());
         
-                retorno += "\nLivro: " + exemplarB.getLivro().getTitulo();
-                retorno += "\nAutor: " + exemplarB.getLivro().getAutor();
-                retorno += "\nEditora: " + exemplarB.getLivro().getEditora();
-                retorno += "\nExemplar nº: " + exemplarB.getCodigo();
-                retorno += "\nSituação: " + exemplarB.getSituacao();
-
-                return retorno;
-            }catch(Exception e){
-                System.out.println("Erro na designação dos parametros"+e);
+            for (Exemplar exemplar : emprestimo.getExemplares()) {
+                retorno.append("\nLivro: ").append(exemplar.getLivro().getTitulo());
+                retorno.append("\nAutor: ").append(exemplar.getLivro().getAutor());
+                retorno.append("\nEditora: ").append(exemplar.getLivro().getEditora());
+                retorno.append("\nExemplar nº: ").append(exemplar.getCodigo());
+                retorno.append("\nSituação: ").append(exemplar.getSituacao());
             }
-        }catch(Exception e){
-            System.out.println("Erro na definição das variavel tlgd: " + e);
+            retorno.append("$$$");            
         }
-        System.out.println("Nem chegou a usar os atributos só foi pro nulo");
-        return null;
+        return retorno.toString();
     }
 }
