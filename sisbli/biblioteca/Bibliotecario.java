@@ -46,6 +46,7 @@ public class Bibliotecario extends Funcionario implements LivroReservado{
                 retorno.append("\nEditora: ").append(exemplar.getLivro().getEditora());
                 retorno.append("\nExemplar nº: ").append(exemplar.getCodigo());
                 retorno.append("\nSituação: ").append(exemplar.getSituacao());
+                retorno.append("\n");
             }
             retorno.append("$$$");            
         }

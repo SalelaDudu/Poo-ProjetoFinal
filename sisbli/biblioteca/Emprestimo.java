@@ -14,18 +14,15 @@ public class Emprestimo {
                 try{
                     exemplares = carregarExemplares(reserva.getLivros());
                     if(exemplares.isEmpty() || exemplares == null){
-                        System.out.println("erro nos exemplares");
                     }
                     dataRetirada = reserva.getData();
                     dataDevolucao = Util.somarDiasData(dataRetirada, 7);
                 }
                 catch(Exception e){
-                    System.out.println("o erro tava aqui kkkkkkk "+ e);
                 }
             }
 
         }catch(Exception e){
-            System.out.println("erro no emprestimo " + e);
         }
     }
 

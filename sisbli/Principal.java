@@ -224,7 +224,6 @@ public class Principal {
                                         JOptionPane.showMessageDialog(null, informacoes, titulo_programa, JOptionPane.INFORMATION_MESSAGE);
                                     }
                                     else if((informacoes != null) && (reservas != null)){
-                                        System.out.println(reservas.length);
                                         for (String informacao : reservas) {                                            
                                             JOptionPane.showMessageDialog(null, informacao, titulo_programa, JOptionPane.INFORMATION_MESSAGE);
                                         }
