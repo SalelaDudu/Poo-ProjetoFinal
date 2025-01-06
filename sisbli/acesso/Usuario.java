@@ -46,22 +46,14 @@ public class Usuario {
         return "";
     }
 
-    public static <T> List<T> listar(Class<T> instanciaClasse){
-        @SuppressWarnings("unused")
-        List<T> lista = new ArrayList<>();
-        try{
-            if(instanciaClasse == Livro.class){
-                return (List<T>) Livro.Listar();
-            }
-            else if(instanciaClasse == Funcionario.class || instanciaClasse == Professor.class || instanciaClasse == Bibliotecario.class || instanciaClasse == Usuario.class){
-                return (List<T>) usuarios;
-            }
-            return null;
-        }
-        catch(Exception e){
-            return null;
-        }        
-    }
+	public static <T> List<T> listar(Class<T> instanciaClasse) {
+		List<T> usuariosClasse = new ArrayList<>();
+
+		for (Usuario usuario : usuarios)
+			if (instanciaClasse.isInstance(usuario))
+				usuariosClasse.add((T) usuario);
+		return (usuariosClasse);
+	}
 
     public static Usuario obter(String login, String senha){
         try{

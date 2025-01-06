@@ -20,8 +20,14 @@ public class Principal {
         funcionalidades.add(CAD_CONS);
         funcionalidades.add(CAD_RESE);
         funcionalidades.add(REM_CONS);
-
-        try {
+        Aluno aluno = null;
+        List<LivroReservado> consumidorDeEventos = new ArrayList<LivroReservado>();
+        try {            
+            for (Usuario usuario : Usuario.listar(Usuario.class)) {
+                if(usuario instanceof Aluno){
+                    aluno = (Aluno) usuario;
+                }
+            }
 
             String usuario_login = JOptionPane.showInputDialog(null, "Informe seu login:", titulo_programa,
                                     JOptionPane.PLAIN_MESSAGE);
@@ -52,11 +58,12 @@ public class Principal {
                             do {
                                 JComboBox<String> combobox = new JComboBox<>();
                                 combobox.addItem("[Selecione o Consumidor]");
+
                                 for (Usuario usuario : Usuario.listar(Usuario.class)) {
                                     if (consumidores.contains(usuario.getNome())) {
                                     }
                                     else {
-                                        if(usuario.getClass().equals(Aluno.class)){
+                                        if(usuario instanceof Aluno){
                                         }
                                         else{
                                             combobox.addItem(usuario.getNome());
@@ -133,6 +140,22 @@ public class Principal {
 
                         
                         case 2:
+                            if(consumidores.isEmpty()){
+                                JOptionPane.showMessageDialog(null,"Nenhum consumidor foi registrado,\npor favor registre ao menos 1.",titulo_programa,JOptionPane.WARNING_MESSAGE);
+                                break;
+                            }
+                            else{
+                                for (String nome : consumidores) {
+                                        for (Usuario usuario : Usuario.listar(Usuario.class)) {
+                                            if(usuario.getNome() == nome){
+                                                if(usuario instanceof LivroReservado){
+                                                    consumidorDeEventos.add((LivroReservado) usuario);
+                                                }
+                                            }
+                                        }
+                                }                                
+                            }
+
                             int selecao2 = 10;
                             List<String> livros = new ArrayList<String>();
                             JOptionPane.showMessageDialog(null,"Listando nossos livros...",titulo_programa,JOptionPane.PLAIN_MESSAGE);
@@ -159,25 +182,10 @@ public class Principal {
                                     JOptionPane.showMessageDialog(null, "O título:"+ titulo +" é inválido!", titulo_programa,
                                     JOptionPane.WARNING_MESSAGE);
                                 }
-                                else {
-                                    Livro livro = Livro.obterLivro(titulo);
-                                    Exemplar exemplar = Livro.obterExemplar(livro);
-                            
-                                    if (exemplar != null) {                                                                   
-                                        Usuario usuarioLogado = Usuario.obter(usuario_login, usuario_senha);
-                                            // Reserva reserva = new Reserva(Util.obterDataAtual(), List.of(livro));
-                                            // usuarioLogado.cadastrarReserva(List.of(titulo), Util.obterDataAtual()); 
-                            
-                                        JOptionPane.showMessageDialog(null, "Livro reservado com sucesso!", titulo_programa,
-                                                                JOptionPane.INFORMATION_MESSAGE);
-                                    } else {
-                                        JOptionPane.showMessageDialog(null, "Não há exemplares disponíveis para este livro.", titulo_programa,
-                                                                JOptionPane.ERROR_MESSAGE);
-                                    }
-                                }
                             }
                             
-                        break;
+                            aluno.cadastrarReserva(livros, Util.obterDataAtual());
+                            break;
                         case 3:
                             controle = false;
                             for (Usuario usuario : Usuario.listar(Usuario.class)) {
@@ -188,6 +196,7 @@ public class Principal {
                                     }
                                 }
                             }
+                            System.exit(0);
                         default:
                             break;
                     }
