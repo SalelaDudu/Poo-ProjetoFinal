@@ -2,6 +2,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import java.util.List;
 import java.util.ArrayList;
+import java.nio.charset.StandardCharsets;
 import biblioteca.*;
 import divisao.*;
 import infraestrutura.*;
@@ -173,21 +174,37 @@ public class Principal {
                             }
 
                             do{
-                                String titulo = JOptionPane.showInputDialog(null, "Informe o título do livro que deseja reservar:",
-                                titulo_programa, JOptionPane.OK_CANCEL_OPTION);
-                                livros.add(titulo);
-                                selecao2 = JOptionPane.showConfirmDialog(null,"Deseja cadastrar reserva para mais um livro?", titulo_programa, 0, JOptionPane.QUESTION_MESSAGE);
-                            }
-                            while(selecao2 != 1);
-                            
-                            for (String titulo : livros) {
-                                if (titulo == null || titulo == "") {                                    
-                                    JOptionPane.showMessageDialog(null, "O título:"+ titulo +" é inválido!", titulo_programa,
-                                    JOptionPane.WARNING_MESSAGE);
-                                    livros.remove(titulo);
+
+                                JComboBox<String> combobox = new JComboBox<>();
+                                combobox.addItem("[Selecione o Livro]");
+                                for (String livro : Livro.Listar()) {
+                                        combobox.addItem(livro);
                                 }
+
+                                Object[] funcao = { "Cadastrar", "Cancelar" };
+                                selecao = JOptionPane.showOptionDialog(null, combobox, titulo_programa,
+                                            JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, funcao,
+                                            funcao[0]);
+                                
+                                if (selecao == 0) {
+                                    if (combobox.getSelectedItem() == "[Selecione o Livro]") {
+                                        JOptionPane.showMessageDialog(null, "Seleção inválida!", titulo_programa,
+                                        JOptionPane.WARNING_MESSAGE);
+                                    } else {
+                                        livros.add(combobox.getSelectedItem().toString());                                        
+                                        
+                                        aluno.cadastrarReserva(livros, Util.obterDataAtual());
+                                        
+                                        if (JOptionPane.showConfirmDialog(null, "Deseja realizar outro cadastro?",
+                                            titulo_programa, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {                                            
+                                            
+                                        } else {
+                                            selecao2 = 1;
+                                        }
+                                    }
+                                } else {}
                             }
-                            aluno.cadastrarReserva(livros, Util.obterDataAtual());
+                            while(selecao2 != 1);                            
                             break;
                         case 3:
                             controle = false;
@@ -209,7 +226,7 @@ public class Principal {
                         titulo_programa, JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
-            System.out.println("Erro no main: "+e);
+            System.out.println("Erro no main: "+ e);
         }
 System.exit(0);
     }
